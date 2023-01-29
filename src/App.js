@@ -18,6 +18,7 @@ class App extends React.Component {
     };
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onInputChange({ target }) {
@@ -26,6 +27,19 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
+    });
+  }
+
+  onSaveButtonClick() {
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
     });
   }
 
@@ -83,6 +97,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ this.verifyInputs() }
           onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
