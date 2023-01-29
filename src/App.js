@@ -17,6 +17,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      deck: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -40,7 +41,30 @@ class App extends React.Component {
   }
 
   onSaveButtonClick() {
-    this.setState({
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const newCard = {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+    }
+
+    this.setState((previous) => ({
+      deck: [...previous.deck, newCard],
       cardName: '',
       cardDescription: '',
       cardAttr1: 0,
@@ -51,7 +75,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: true,
       isSaveButtonDisabled: true,
-    });
+    }));
   }
 
   verifyInputs() {
@@ -85,6 +109,8 @@ class App extends React.Component {
   }
 
   render() {
+    const { deck } = this.state;
+
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -96,6 +122,10 @@ class App extends React.Component {
         <Card
           { ...this.state }
         />
+        <h2>Seu Deck de Cartas</h2>
+        {deck.map((card) => (
+          <Card key={ card.cardName } { ...card }/>
+        ))}
       </div>
     );
   }
