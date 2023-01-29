@@ -18,11 +18,13 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       deck: [],
+      isCard: false,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.verifyInputs = this.verifyInputs.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -61,7 +63,8 @@ class App extends React.Component {
       cardAttr3,
       cardRare,
       cardTrunfo,
-    }
+      isCard: true,
+    };
 
     this.setState((previous) => ({
       deck: [...previous.deck, newCard],
@@ -75,6 +78,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: true,
       isSaveButtonDisabled: true,
+      isCard: false,
     }));
   }
 
@@ -108,6 +112,25 @@ class App extends React.Component {
     }
   }
 
+  deleteCard(removeCard) {
+    const { deck } = this.state;
+    const temp = deck.filter((card) => card.cardName !== removeCard);
+    this.setState({
+      deck: temp,
+    });
+
+    const trunfoCard = temp.some((card) => (card.cardTrunfo));
+    if (trunfoCard) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    } else {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  }
+
   render() {
     const { deck } = this.state;
 
@@ -124,7 +147,11 @@ class App extends React.Component {
         />
         <h2>Seu Deck de Cartas</h2>
         {deck.map((card) => (
-          <Card key={ card.cardName } { ...card }/>
+          <Card
+            key={ card.cardName }
+            { ...card }
+            deleteCard={ this.deleteCard }
+          />
         ))}
       </div>
     );
