@@ -14,20 +14,29 @@ class App extends React.Component {
       cardAttr2: 0,
       cardAttr3: 0,
       cardRare: '',
-      cardTrunfo: '',
+      cardTrunfo: false,
+      hasTrunfo: false,
+      isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.verifyInputs = this.verifyInputs.bind(this);
   }
 
   onInputChange({ target }) {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name, value, checked } = target;
 
+    if (target.name === 'cardTrunfo') {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
+
+    const valor = target.type === 'checkbox' ? checked : value;
     this.setState({
-      [name]: value,
-    });
+      [name]: valor,
+    }, () => this.verifyInputs());
   }
 
   onSaveButtonClick() {
@@ -40,74 +49,52 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      hasTrunfo: true,
+      isSaveButtonDisabled: true,
     });
   }
 
-  verifyInputs = () => {
+  verifyInputs() {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+
     const maxAttr = 90;
     const maxAttrSum = 210;
 
-    const {
-      cardName,
-      cardDescription,
-      cardImage,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-    } = this.state;
-
-    const verifyCardInfo = cardName.length === 0
-      || cardDescription.length === 0
-      || cardImage.length === 0;
-
-    const verifyAttr1 = cardAttr1 > maxAttr || cardAttr1 < 0;
-    const verifyAttr2 = cardAttr2 > maxAttr || cardAttr2 < 0;
-    const verifyAttr3 = cardAttr3 > maxAttr || cardAttr3 < 0;
-    const verifyAttrSum = Number(cardAttr1)
-      + Number(cardAttr2)
-      + Number(cardAttr3)
-      > maxAttrSum;
-
-    return verifyCardInfo || verifyAttr1 || verifyAttr2 || verifyAttr3 || verifyAttrSum;
-  };
+    if (cardName === '' || cardDescription === '' || cardImage === ''
+      || Number(cardAttr1) > maxAttr
+      || Number(cardAttr2) > maxAttr
+      || Number(cardAttr3) > maxAttr
+      || Number(cardAttr1) < 0 || Number(cardAttr2) < 0 || Number(cardAttr3) < 0
+      || Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) > maxAttrSum
+    ) {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
+    } else {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+    }
+  }
 
   render() {
-    const {
-      cardName,
-      cardDescription,
-      cardImage,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
-
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ this.verifyInputs() }
+          { ...this.state }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
-          cardName={ cardName }
-          cardImage={ cardImage }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
+          { ...this.state }
         />
       </div>
     );
