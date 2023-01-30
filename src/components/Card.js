@@ -18,6 +18,7 @@ class Card extends React.Component {
 
     return (
       <div className="cards-container">
+        <img className="Card-logo" src="https://pbs.twimg.com/media/Fnv8MTrXoAwsGz-?format=png&name=900x900" alt="JOJO Trunfo Logo" />
         <header>
           <h2 data-testid="name-card">{ cardName }</h2>
           <h3 className="Card-rarity" data-testid="rare-card">{ cardRare }</h3>

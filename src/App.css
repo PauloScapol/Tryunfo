@@ -132,7 +132,7 @@
 
 .Card {
   align-items: center;
-  background-color: rgb(58, 37, 66);
+  background-color: rgb(56, 24, 83);
   border: 15px solid rgb(246, 205, 61);
   border-radius: 29px;
   display: flex;
@@ -161,6 +161,14 @@
   text-align: center;
 }
 
+.Card .Card-logo {
+  left: 1.2rem;
+  position: absolute;
+  top: 0.5rem;
+  width: 115px;
+  z-index: 2;
+}
+
 .Card header h2 {
   background-color: rgb(246, 205, 61);
   color: black;
@@ -182,16 +190,16 @@
   width: 160px;
 }
 
-.Card-img {
+.Card .Card-img {
   height: 240px;
-  margin-left: 50px;
+  margin-left: 14%;
   object-fit: contain;
   object-position: center;
   width: 240px;
   z-index: 4;
 }
 
-.Card-desc-container {
+.Card .Card-desc-container {
   align-items: center;
   background-color: rgb(163, 134, 175);
   border-radius: 16px;
@@ -202,12 +210,13 @@
   justify-content: center;
   margin: 13px 0;
   padding: 7px;
-  width: 100%;
+  width: fit-content;
 }
 
 .Card ul {
   list-style-type: none;
   padding-bottom: 40px;
+  padding-inline-start: 10px;
   position: relative;
   width: 94%;
 }
@@ -288,7 +297,7 @@
 
 .Deck .cards-container {
   align-items: center;
-  background-color: rgb(58, 37, 66);
+  background-color: rgb(56, 24, 83);
   border: 15px solid rgb(246, 205, 61);
   border-radius: 29px;
   display: flex;
@@ -299,6 +308,14 @@
   padding: 21px;
   position: relative;
   width: 337px;
+}
+
+.Deck .cards-container .Card-logo {
+  left: 1.2rem;
+  position: absolute;
+  top: 0.5rem;
+  width: 115px;
+  z-index: 2;
 }
 
 .Deck .cards-container header {
@@ -333,9 +350,33 @@
   width: 160px;
 }
 
+.Deck .cards-container .Card-img {
+  height: 240px;
+  margin-left: 15%;
+  object-fit: contain;
+  object-position: center;
+  width: 240px;
+  z-index: 4;
+}
+
+.Deck .cards-container .Card-desc-container {
+  align-items: center;
+  background-color: rgb(163, 134, 175);
+  border-radius: 16px;
+  color: white;
+  display: flex;
+  font-size: 80%;
+  height: 72px;
+  justify-content: center;
+  margin: 13px 0;
+  padding: 7px;
+  width: fit-content;
+}
+
 .Deck .cards-container ul {
   list-style-type: none;
   padding-bottom: 10px;
+  padding-inline-start: 0;
   position: relative;
   width: 94%;
 }
@@ -385,6 +426,10 @@
   color: rgb(246, 205, 61);
   font-size: 20px;
   font-weight: 600;
+}
+
+.Deck .cards-container .SuperTrunfoIcon {
+  margin-left: 20px;
 }
 
 .Deck .cards-container .delete-btn {
