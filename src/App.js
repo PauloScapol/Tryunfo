@@ -155,8 +155,8 @@ class App extends React.Component {
           </section>
         </div>
         <div className="Deck">
+          <h2>Seu Deck de Cartas</h2>
           <section className="Deck-container">
-            <h2>Seu Deck de Cartas</h2>
             {deck.map((card) => (
               <Card
                 key={ card.cardName }

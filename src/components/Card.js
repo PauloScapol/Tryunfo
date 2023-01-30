@@ -61,11 +61,13 @@ class Card extends React.Component {
           </li>
         </ul>
 
-        { cardTrunfo && <span data-testid="trunfo-card">Super Trunfo</span> }
+        { cardTrunfo
+          && <span className="TrunfoCard" data-testid="trunfo-card">Super Trunfo</span> }
 
         <div>
           {isCard ? (
             <button
+              className="delete-btn"
               data-testid="delete-button"
               onClick={ () => deleteCard(cardName) }
             >

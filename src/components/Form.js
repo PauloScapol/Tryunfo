@@ -18,6 +18,8 @@ class Form extends React.Component {
       onSaveButtonClick,
     } = this.props;
 
+    const attrMax = 210;
+
     return (
       <div>
         <form className="CreateCardForm">
@@ -97,6 +99,13 @@ class Form extends React.Component {
             />
           </label>
 
+          <span
+            className="remaining-pts"
+          >
+            Pontos Restantes:
+            {attrMax - (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))}
+          </span>
+
           <label htmlFor="image-input">
             Imagem
             <input
@@ -119,7 +128,6 @@ class Form extends React.Component {
               value={ cardRare }
               onChange={ onInputChange }
             >
-              {/* <option value="vazio">...</option> */}
               <option value="normal">normal</option>
               <option value="raro">raro</option>
               <option value="muito raro">muito raro</option>
