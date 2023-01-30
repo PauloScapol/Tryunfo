@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -135,24 +136,36 @@ class App extends React.Component {
     const { deck } = this.state;
 
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          { ...this.state }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <Card
-          { ...this.state }
-        />
-        <h2>Seu Deck de Cartas</h2>
-        {deck.map((card) => (
-          <Card
-            key={ card.cardName }
-            { ...card }
-            deleteCard={ this.deleteCard }
-          />
-        ))}
+      <div className="body">
+        <div className="AllButDeck">
+          <h1>Tryunfo</h1>
+          <section className="FormCardContainer">
+            <div className="FormContainer">
+              <Form
+                { ...this.state }
+                onInputChange={ this.onInputChange }
+                onSaveButtonClick={ this.onSaveButtonClick }
+              />
+            </div>
+            <section className="Card">
+              <Card
+                { ...this.state }
+              />
+            </section>
+          </section>
+        </div>
+        <div className="Deck">
+          <section className="Deck-container">
+            <h2>Seu Deck de Cartas</h2>
+            {deck.map((card) => (
+              <Card
+                key={ card.cardName }
+                { ...card }
+                deleteCard={ this.deleteCard }
+              />
+            ))}
+          </section>
+        </div>
       </div>
     );
   }

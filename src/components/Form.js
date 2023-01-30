@@ -20,11 +20,12 @@ class Form extends React.Component {
 
     return (
       <div>
-        <form>
+        <form className="CreateCardForm">
 
           <label htmlFor="name-input">
             Nome
             <input
+              className="name"
               name="cardName"
               type="text"
               data-testid="name-input"
@@ -36,6 +37,7 @@ class Form extends React.Component {
           <label htmlFor="description-input">
             Descrição
             <input
+              className="desc"
               name="cardDescription"
               type="textarea"
               data-testid="description-input"
@@ -44,9 +46,13 @@ class Form extends React.Component {
             />
           </label>
 
-          <label htmlFor="attr1-input">
+          <label className="label-attr" htmlFor="attr1-input">
+            <div className="attr-icon">
+              <img src="https://www.shareicon.net/data/256x256/2016/02/21/722716_fist_512x512.png" alt="Poder" height="30px" />
+            </div>
             Poder
             <input
+              className="attr"
               name="cardAttr1"
               type="number"
               data-testid="attr1-input"
@@ -57,9 +63,13 @@ class Form extends React.Component {
             />
           </label>
 
-          <label htmlFor="attr2-input">
-            Precisão
+          <label className="label-attr" htmlFor="attr2-input">
+            <div className="attr-icon">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmJuhhHfnETf-AjBI8D4dRt0QJFQHc24412w&usqp=CAU" alt="Alcance" height="30px" />
+            </div>
+            Alcance
             <input
+              className="attr"
               name="cardAttr2"
               type="number"
               data-testid="attr2-input"
@@ -70,9 +80,13 @@ class Form extends React.Component {
             />
           </label>
 
-          <label htmlFor="attr3-input">
+          <label className="label-attr" htmlFor="attr3-input">
+            <div className="attr-icon">
+              <img src="https://cdn-icons-png.flaticon.com/128/4205/4205494.png" alt="Velocidade" height="30px" />
+            </div>
             Velocidade
             <input
+              className="attr"
               name="cardAttr3"
               type="number"
               data-testid="attr3-input"
@@ -86,6 +100,8 @@ class Form extends React.Component {
           <label htmlFor="image-input">
             Imagem
             <input
+              placeholder="URL da imagem"
+              className="image"
               name="cardImage"
               type="text"
               data-testid="image-input"
@@ -97,6 +113,7 @@ class Form extends React.Component {
           <label htmlFor="rare-input">
             Raridade
             <select
+              className="rare"
               name="cardRare"
               data-testid="rare-input"
               value={ cardRare }
@@ -110,7 +127,10 @@ class Form extends React.Component {
           </label>
 
           {hasTrunfo ? 'Você já tem um Super Trunfo em seu baralho' : (
-            <label htmlFor="trunfo-input">
+            <label className="label-trunfo" htmlFor="trunfo-input">
+              <div className="trunfo-icon">
+                <img src="https://staticdelivery.nexusmods.com/mods/3174/images/thumbnails/85/85-1585932190-669867691.png" alt="Golden Arrow" height="30px" />
+              </div>
               <input
                 name="cardTrunfo"
                 type="checkbox"
@@ -123,6 +143,7 @@ class Form extends React.Component {
           )}
 
           <button
+            className="save-button"
             name="btnSalvar"
             data-testid="save-button"
             type="submit"
