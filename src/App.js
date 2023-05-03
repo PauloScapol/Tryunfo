@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
@@ -20,12 +21,24 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       deck: [],
       isCard: false,
+      filterValue: '',
+      filterRare: '',
     };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.verifyInputs = this.verifyInputs.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleRareFilterChange = this.handleRareFilterChange.bind(this);
+  }
+
+  handleFilterChange(event) {
+    this.setState({ filterValue: event.target.value });
+  }
+
+  handleRareFilterChange(event) {
+    this.setState({ filterRare: event.target.value });
   }
 
   onInputChange({ target }) {
@@ -133,7 +146,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { deck } = this.state;
+    const { deck, filterValue, filterRare } = this.state;
+    const filteredDeck = deck.filter((card) => {
+      const nameMatch = card.cardName.toLowerCase().includes(filterValue.toLowerCase());
+      const rareMatch = filterRare === '' || card
+        .cardRare === filterRare;
+
+      return nameMatch && rareMatch;
+    });
 
     return (
       <div className="body">
@@ -146,6 +166,28 @@ class App extends React.Component {
                 onInputChange={ this.onInputChange }
                 onSaveButtonClick={ this.onSaveButtonClick }
               />
+
+              <input
+                className="name-filter"
+                type="text"
+                placeholder="Filtrar por nome"
+                value={ filterValue }
+                onChange={ this.handleFilterChange }
+                data-testid="name-filter"
+              />
+
+              <select
+                className="rare-filter"
+                value={ filterRare }
+                onChange={ this.handleRareFilterChange }
+                data-testid="rare-filter"
+              >
+                <option value="">Filtrar por raridade</option>
+                <option value="normal">normal</option>
+                <option value="raro">raro</option>
+                <option value="muito raro">muito raro</option>
+              </select>
+
             </div>
             <section className="Card">
               <Card
@@ -157,7 +199,7 @@ class App extends React.Component {
         <div className="Deck">
           <h2>Seu Deck de Cartas</h2>
           <section className="Deck-container">
-            {deck.map((card) => (
+            {filteredDeck.map((card) => (
               <Card
                 key={ card.cardName }
                 { ...card }

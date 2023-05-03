@@ -441,3 +441,7 @@
   margin-top: 10px;
   width: 100%;
 }
+
+.name-filter, .rare-filter, .trunfo-filter {
+  margin-top: 20px;
+}
