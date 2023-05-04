@@ -31,7 +31,7 @@ O projeto tem por objetivo a avaliação e prática dos conhecimentos adquiridos
 
 ## O que foi desenvolvido
 
-Foi desenvolvido, em equipe, um Jogo no estilo Super Trunfo. Ao utilizar essa aplicação, a pessoa usuária será capaz de: 
+Foi desenvolvido, um Jogo no estilo Super Trunfo. Ao utilizar essa aplicação, a pessoa usuária será capaz de: 
 
 - Criar um baralho com o tema de sua escolha;
 - Adicionar e remover cartas do baralho;
