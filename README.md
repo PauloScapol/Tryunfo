@@ -47,7 +47,7 @@ Foi desenvolvido, um Jogo no estilo Super Trunfo. Ao utilizar essa aplicação, 
 
 ## Demonstração da aplicação
 
-:construction: EM CONSTRUÇÃO :construction:
+![caption](https://github.com/PauloScapol/GIFS/blob/main/Tryunfo.gif)
 
 ---
 
